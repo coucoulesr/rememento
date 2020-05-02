@@ -41,7 +41,7 @@ class ChangePassword extends React.Component {
             newPassword: this.state.newPassword1,
           },
           headers: {
-            Authentication: this.props.token,
+            Authorization: this.props.token,
           },
         })
         .then(() => {
