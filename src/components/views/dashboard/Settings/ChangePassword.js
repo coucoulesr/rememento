@@ -68,6 +68,7 @@ class ChangePassword extends React.Component {
         <div style={textFieldContainerStyles}>
           <TextField
             fullWidth
+            type="password"
             size="small"
             error={this.state.oldPasswordError}
             helperText={this.state.oldPasswordError && "Invalid password"}
@@ -81,6 +82,7 @@ class ChangePassword extends React.Component {
           />
           <TextField
             fullWidth
+            type="password"
             size="small"
             value={this.state.newPassword1}
             onChange={(e) =>
@@ -92,6 +94,7 @@ class ChangePassword extends React.Component {
           />
           <TextField
             fullWidth
+            type="password"
             size="small"
             error={this.state.newPasswordError}
             helperText={this.state.newPasswordError && "Passwords must match"}
