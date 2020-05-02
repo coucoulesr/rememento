@@ -35,14 +35,18 @@ export default function Nav(props) {
     <div className={classes.root}>
       {loggedOut && <Redirect to="/" />}
       <AppBar position="static">
-        <Toolbar style={{backgroundColor: '#7B4780'}}>
+        <Toolbar style={{ backgroundColor: "#7B4780" }}>
           <Typography variant="h6" className={classes.title}>
             {props.name}
           </Typography>
           <IconButton
             onClick={props.toggleSettings}
             className={classes.menuButton}
-            style={{color: props.viewSettings ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.5)"}}
+            style={{
+              color: props.viewSettings
+                ? "rgba(255,255,255,1)"
+                : "rgba(255,255,255,0.5)",
+            }}
             aria-label="settings"
           >
             <SettingsIcon />
