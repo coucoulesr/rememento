@@ -29,9 +29,9 @@ class ChangePassword extends React.Component {
     }
   };
 
-  submit = () => {
+  submit = (e) => {
+    if (e) e.preventDefault()
     if (this.comparePasswords()) {
-        console.log(this.state)
       axios
         .request({
           url: "https://api.racoucoules.com/rememento/change-password",
@@ -56,7 +56,9 @@ class ChangePassword extends React.Component {
 
   render() {
     return (
-      <div
+      <form
+        onSubmit={(e) => this.submit(e)}
+        onReset={() => this.props.activate()}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -104,14 +106,14 @@ class ChangePassword extends React.Component {
           />
         </div>
         <div style={formButtonsStyles}>
-          <IconButton onClick={() => this.submit()}>
+          <IconButton type="submit">
             <CheckCircleIcon style={{ color: "green" }} />
           </IconButton>
-          <IconButton onClick={() => this.props.activate()}>
+          <IconButton type="reset">
             <CancelIcon style={{ color: "red" }} />
           </IconButton>
         </div>
-      </div>
+      </form>
     );
   }
 }
