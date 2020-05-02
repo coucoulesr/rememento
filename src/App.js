@@ -6,7 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 
 import Splash from './components/views/Splash';
 import About from './components/views/About';
-import Dashboard from './components/views/dashboard/Index.js';
+import Dashboard  from './components/views/Dashboard';
 import Login from './components/views/Login';
 
 
