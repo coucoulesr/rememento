@@ -18,7 +18,8 @@ class Recipient extends React.Component {
     phoneError: false,
   };
 
-  editRecipient = () => {
+  editRecipient = (e) => {
+    if (e) e.preventDefault();
     axios
       .get(
         `https://api.racoucoules.com/rememento/verify/${this.state.newPhone}`
@@ -83,7 +84,18 @@ class Recipient extends React.Component {
           </div>
         )}
         {this.state.editingRecipient && (
-          <div style={containerStyles}>
+          <form
+            onSubmit={(e) => this.editRecipient(e)}
+            onReset={() =>
+              this.setState({
+                ...this.state,
+                newName: this.props.recipient.name,
+                newPhone: this.props.recipient.phone,
+                editingRecipient: false,
+              })
+            }
+            style={containerStyles}
+          >
             <div style={textFieldContainerStyles}>
               <TextField
                 fullWidth
@@ -111,23 +123,14 @@ class Recipient extends React.Component {
               />
             </div>
             <div style={formButtonsStyles}>
-              <IconButton onClick={() => this.editRecipient()}>
+              <IconButton type="submit">
                 <CheckCircleIcon style={{ color: "green" }} />
               </IconButton>
-              <IconButton
-                onClick={() =>
-                  this.setState({
-                    ...this.state,
-                    newName: this.props.recipient.name,
-                    newPhone: this.props.recipient.phone,
-                    editingRecipient: false,
-                  })
-                }
-              >
+              <IconButton type="reset">
                 <CancelIcon style={{ color: "red" }} />
               </IconButton>
             </div>
-          </div>
+          </form>
         )}
       </div>
     );
