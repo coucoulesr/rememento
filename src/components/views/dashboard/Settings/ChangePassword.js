@@ -30,7 +30,7 @@ class ChangePassword extends React.Component {
   };
 
   submit = (e) => {
-    if (e) e.preventDefault()
+    if (e) e.preventDefault();
     if (this.comparePasswords()) {
       axios
         .request({
@@ -47,6 +47,7 @@ class ChangePassword extends React.Component {
         .then(() => {
           this.setState({ ...this.state, oldPasswordError: false });
           alert("Password changed successfully");
+          this.props.activate();
         })
         .catch((err) => {
           this.setState({ ...this.state, oldPasswordError: err });
@@ -101,7 +102,7 @@ class ChangePassword extends React.Component {
             value={this.state.newPassword2}
             onChange={(e) => {
               this.setState({ ...this.state, newPassword2: e.target.value });
-            //   this.comparePasswords();
+              //   this.comparePasswords();
             }}
             label="Repeat New Password"
             variant="filled"
