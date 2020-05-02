@@ -1,0 +1,14 @@
+.settings-item {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.2s ease-out;
+}
+
+.settings-item:hover, .settings-item:active {
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
