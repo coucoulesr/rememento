@@ -63,6 +63,7 @@ class Login extends React.Component {
           token: res.data.token,
           recipients: res.data.recipients,
         });
+        cookie.save('token', res.data.token, { path: '/', maxAge: 3600000 })
         this.pushToDashboard();
       })
       .catch((error) => {
