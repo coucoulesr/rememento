@@ -9,6 +9,7 @@ import {
   formButtonsStyles,
   textFieldStyles,
 } from "../styles/card-styles";
+import cookie from 'react-cookies';
 
 class CloseAccount extends React.Component {
   state = {
@@ -35,7 +36,8 @@ class CloseAccount extends React.Component {
           },
         })
         .then((res) => {
-          if (res.status == 200) {
+          if (res.status === 200) {
+            cookie.remove('token');
             this.setState({
               ...this.state,
               passwordError: false,
