@@ -8,7 +8,7 @@ class RecipientList extends React.Component {
     const recipients = this.props.recipients;
     this.props.changeRecipients(
       recipients.map((recipient) => {
-        if (recipient.id == r.id) {
+        if (recipient.id === r.id) {
           return r;
         } else {
           return recipient;
