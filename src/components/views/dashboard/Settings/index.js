@@ -4,6 +4,7 @@ import { IconButton, Typography } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import axios from "axios";
 import ChangePassword from "./ChangePassword";
+import CloseAccount from './CloseAccount';
 import "../styles/settings.css";
 
 class Settings extends React.Component {
@@ -68,12 +69,28 @@ class Settings extends React.Component {
   render() {
     return (
       <div style={flexCardStyles}>
-        <IconButton
-          style={{ alignSelf: "flex-end" }}
-          onClick={this.props.toggleSettings}
+        <div
+          style={{
+            marginBottom: "-5px",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
         >
-          <ClearIcon />
-        </IconButton>
+          <Typography
+            variant="subtitle1"
+            style={{ padding: "10px 15px", color: "#bbb" }}
+          >
+            Settings
+          </Typography>
+          <IconButton
+            style={{ padding: "5px", margin: "5px" }}
+            onClick={this.props.toggleSettings}
+          >
+            <ClearIcon />
+          </IconButton>
+        </div>
         <div style={settingsItemBlockStyle}>
           {this.state.homeScreen && this.props.recipients.length === 0 && (
             <a onClick={(e) => this.addRecipient(e)} className="settings-item">
@@ -92,7 +109,7 @@ class Settings extends React.Component {
               </a>
               <a
                 onClick={(e) => {
-                  this.closeAccount(e);
+                  this.activateCloseAccount(e);
                 }}
                 className="settings-item"
               >
@@ -103,6 +120,12 @@ class Settings extends React.Component {
           {this.state.changingPassword && (
             <ChangePassword
               activate={this.activateChangePassword}
+              token={this.props.token}
+            />
+          )}
+          {this.state.closingAccount && (
+            <CloseAccount
+              activate={this.activateCloseAccount}
               token={this.props.token}
             />
           )}
