@@ -58,7 +58,7 @@ class Recipient extends React.Component {
       <div>
         {!this.state.editingRecipient && (
           <div style={containerStyles}>
-            <div style={{ padding: "10px" }}>
+            <div style={{ padding: "5px" }}>
               <Typography variant="h4">{this.props.recipient.name}</Typography>
             </div>
             <div style={{ padding: "10px" }}>
@@ -78,7 +78,7 @@ class Recipient extends React.Component {
                   this.setState({ ...this.state, editingRecipient: true })
                 }
               >
-                <EditIcon style={{ color: "#ccc" }} />
+                <EditIcon fontSize="small" style={{ color: "#ccc" }} />
               </IconButton>
             </div>
           </div>
