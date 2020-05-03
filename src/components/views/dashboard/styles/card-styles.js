@@ -8,6 +8,9 @@ const cardStyles = {
   margin: "20px",
   borderRadius: "2px 2px 0 0",
   borderBottom: "2px solid #ccc",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 };
 
 export const formButtonsStyles = {
