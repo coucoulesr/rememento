@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
 import axios from "axios";
 import validate from "validate.js";
@@ -370,6 +370,7 @@ class Splash extends React.Component {
         )}
         {this.state.signupStage === signupStages.CONFIRM && !this.state.error && (
           <div style={bodyStyles}>
+            <Redirect to="/login" />
             <h1 style={formStyles[0]}>
               Thanks for registering. Please check your email for registration
               confirmation so we can finish setting up your account.
