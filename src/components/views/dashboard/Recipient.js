@@ -61,19 +61,23 @@ class Recipient extends React.Component {
             <div style={{ padding: "5px" }}>
               <Typography variant="h4">{this.props.recipient.name}</Typography>
             </div>
-            <div style={{ padding: "10px" }}>
-              <Typography variant="h5">{this.props.recipient.phone}</Typography>
-            </div>
             <div
               style={{
                 position: "relative",
-                top: "-50px",
-                marginBottom: "-50px",
-                display: "block",
-                alignSelf: "flex-end",
+                right: "-20px", // -1/2 * (buttonWidth + buttonMargin)
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "10px",
               }}
             >
+              <Typography variant="h5">{this.props.recipient.phone}</Typography>
               <IconButton
+                style={{
+                  marginLeft: "10px",
+                  height: "30px",
+                  width: "30px",
+                }}
                 onClick={() =>
                   this.setState({ ...this.state, editingRecipient: true })
                 }
