@@ -21,6 +21,11 @@ const loggedReducer = (state = defaultState, action) => {
         ...state,
         recipients: action.payload.recipients,
       };
+      case 'SET_TOKEN':
+        return {
+          ...state,
+          token: action.payload.token
+        }
     default:
       return state;
   }
