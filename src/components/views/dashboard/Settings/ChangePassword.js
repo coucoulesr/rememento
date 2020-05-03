@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, IconButton } from "@material-ui/core";
+import { TextField, IconButton, Typography } from "@material-ui/core";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
 import {
@@ -66,6 +66,7 @@ class ChangePassword extends React.Component {
           alignItems: "center",
         }}
       >
+        <Typography variant="h6">Change Password</Typography>
         <div style={textFieldContainerStyles}>
           <TextField
             fullWidth
