@@ -22,7 +22,8 @@ const mapStateToProps = (state) => {
 };
 
 class App extends React.Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props)
     let token = cookie.load("token");
     if (typeof token != "undefined") {
       this.props.dispatch(setToken(token));
