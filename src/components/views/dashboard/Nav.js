@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
+import cookie from "react-cookies";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,7 @@ export default function Nav(props) {
   const dispatch = useDispatch();
   const [loggedOut, setLoggedOut] = useState(false);
   const logout = () => {
+    cookie.remove("token");
     dispatch({ type: "LOG_OUT" });
     setTimeout(800, () => setLoggedOut(true));
   };
