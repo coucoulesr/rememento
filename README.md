@@ -2,7 +2,7 @@
 
 Rememento is an app that reminds your loved ones how much you care. We let you send automatic daily text reminders to let them know you're thinking of them.
 
-Visit rememento.com to see the production deploy of this project. Remento was designed, developed, and deployed with love and free of charge by Richard Coucoules. To see more of my work, please go to www.racoucoules.com.
+Visit www.rememento.com to see the production deploy of this project. Remento was designed, developed, and deployed with love and free of charge by Richard Coucoules. To see more of my work, please go to www.racoucoules.com.
 
 ## Stack
 
