@@ -101,7 +101,10 @@ class Settings extends React.Component {
             </div>
           )}
           {this.state.changingPassword && (
-            <ChangePassword activate={this.activateChangePassword} token={this.props.token} />
+            <ChangePassword
+              activate={this.activateChangePassword}
+              token={this.props.token}
+            />
           )}
         </div>
       </div>
