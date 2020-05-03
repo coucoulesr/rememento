@@ -117,7 +117,7 @@ class Splash extends React.Component {
       this.setState({ ...this.state, passwordError: true });
     } else {
       const scrubbedPhone = Number(
-        [...this.recipients[0].phone].filter((ch) => !isNaN(ch)).join("")
+        [...this.state.recipients[0].phone].filter((ch) => !isNaN(ch)).join("")
       );
       this.setState({
         ...this.state,
