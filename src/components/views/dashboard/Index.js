@@ -8,14 +8,14 @@ import { connect } from "react-redux";
 import { login } from "../../../redux/actions";
 import { CircularProgress } from "@material-ui/core";
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
     email: state.email,
     name: state.name,
     recipients: state.recipients,
     token: state.token,
   };
-};
+}
 
 class Dashboard extends React.Component {
   state = {
@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
     readyToRender: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.email) {
       axios({
         method: "GET",
@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
         );
         this.setState({ ...this.state, readyToRender: true });
       });
-    } else if (this.props.name && this.state.recipients) {
+    } else if (this.props.name && this.props.recipients) {
       this.setState({ ...this.state, readyToRender: true });
     }
   }
