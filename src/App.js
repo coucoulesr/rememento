@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { setToken } from "./redux/actions";
+import cookie from "react-cookies";
 import "./App.css";
 
 import PrivateRoute from "./components/PrivateRoute";
@@ -9,27 +12,20 @@ import About from "./components/views/About";
 import Dashboard from "./components/views/Dashboard";
 import Login from "./components/views/Login";
 
+const mapStateToProps = (state) => {
+  return {
+    email: state.email,
+    recipients: state.recipients,
+    name: state.name,
+    token: state.token
+  };
+};
+
 class App extends React.Component {
-  componentDidMount() {
-    if (typeof document.cookie != "undefined") {
-      const cookieDecode = function(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let cookieArray = decodedCookie.split(";");
-        for (let i = 0; i < cookieArray.length; i++) {
-          let c = cookieArray[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-      };
-      let token = cookieDecode("token");
-      if (typeof token != "undefined" && typeof user != "undefined") {
-        // populate redux store
-      }
+  componentWillMount() {
+    let token = cookie.load("token");
+    if (typeof token != "undefined") {
+      this.props.dispatch(setToken(token));
     }
   }
 
@@ -39,7 +35,7 @@ class App extends React.Component {
         <div className="App">
           <Route exact path="/" component={Splash} />
           <Switch>
-            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/dashboard" component={Dashboard} recipients={this.props.recipients} />
             <Route path="/about" component={About} />
             <Route path="/login" component={Login} />
           </Switch>
@@ -49,4 +45,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
