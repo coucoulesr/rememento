@@ -20,17 +20,18 @@ class Recipient extends React.Component {
 
   editRecipient = (e) => {
     if (e) e.preventDefault();
+    const newPhone = Number([...String(this.state.newPhone)].filter(ch => !isNaN(ch)).join(''))
     axios
       .get(
-        `https://api.racoucoules.com/rememento/verify/${this.state.newPhone}`
+        `https://api.racoucoules.com/rememento/verify/${newPhone}`
       )
       .then((res) => {
         if (res.data.valid) {
           this.setState({ ...this.state, phoneError: false });
-          const newRecipient = {
+          let newRecipient = {
             id: this.props.recipient.id,
             name: this.state.newName,
-            phone: this.state.newPhone,
+            phone: newPhone,
           };
           axios
             .request({
@@ -42,6 +43,11 @@ class Recipient extends React.Component {
               },
             })
             .then((res) => {
+              newRecipient = {
+                id: res.data.id,
+                name: res.data.name,
+                phone: res.data.phone
+              }
               this.props.changeRecipients(newRecipient);
               this.setState({ ...this.state, editingRecipient: false });
             })
