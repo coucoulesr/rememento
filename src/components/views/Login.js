@@ -12,7 +12,8 @@ import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
 import { login } from "../../redux/actions";
 import axios from "axios";
-import cookie from 'react-cookies';
+import cookie from "react-cookies";
+import APIURL from "../../config";
 
 function Copyright() {
   return (
@@ -39,7 +40,7 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
-    if (cookie.load('token')) {
+    if (cookie.load("token")) {
       this.setState({ ...this.state, success: true });
     }
   }
@@ -59,7 +60,7 @@ class Login extends React.Component {
   submit = (e) => {
     e.preventDefault();
     axios
-      .post("https://api.racoucoules.com/rememento/login", {
+      .post(APIURL + "/login", {
         email: this.state.email,
         password: this.state.password,
       })
@@ -70,7 +71,7 @@ class Login extends React.Component {
           token: res.data.token,
           recipients: res.data.recipients,
         });
-        cookie.save('token', res.data.token, { path: '/', maxAge: 3600000 })
+        cookie.save("token", res.data.token, { path: "/", maxAge: 3600000 });
         this.pushToDashboard();
       })
       .catch((error) => {
@@ -174,7 +175,7 @@ const paperStyles = {
 
 const avatarStyles = {
   margin: "20px",
-  backgroundColor: '#B58548',
+  backgroundColor: "#B58548",
 };
 
 const formStyles = {

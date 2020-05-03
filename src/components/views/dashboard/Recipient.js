@@ -9,6 +9,7 @@ import {
   formButtonsStyles,
 } from "./styles/card-styles.js";
 import axios from "axios";
+import APIURL from "../../../config";
 
 class Recipient extends React.Component {
   state = {
@@ -20,11 +21,11 @@ class Recipient extends React.Component {
 
   editRecipient = (e) => {
     if (e) e.preventDefault();
-    const newPhone = Number([...String(this.state.newPhone)].filter(ch => !isNaN(ch)).join(''))
+    const newPhone = Number(
+      [...String(this.state.newPhone)].filter((ch) => !isNaN(ch)).join("")
+    );
     axios
-      .get(
-        `https://api.racoucoules.com/rememento/verify/${newPhone}`
-      )
+      .get(`${APIURL}/verify/${newPhone}`)
       .then((res) => {
         if (res.data.valid) {
           this.setState({ ...this.state, phoneError: false });
@@ -35,7 +36,7 @@ class Recipient extends React.Component {
           };
           axios
             .request({
-              url: `https://api.racoucoules.com/rememento/${this.props.recipient.id}`,
+              url: `${APIURL}/${this.props.recipient.id}`,
               method: "PUT",
               data: newRecipient,
               headers: {
@@ -46,8 +47,8 @@ class Recipient extends React.Component {
               newRecipient = {
                 id: res.data.id,
                 name: res.data.name,
-                phone: res.data.phone
-              }
+                phone: res.data.phone,
+              };
               this.props.changeRecipients(newRecipient);
               this.setState({ ...this.state, editingRecipient: false });
             })

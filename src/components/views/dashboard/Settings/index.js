@@ -2,9 +2,8 @@ import React from "react";
 import cardStyles from "../styles/card-styles";
 import { IconButton, Typography } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
-import axios from "axios";
 import ChangePassword from "./ChangePassword";
-import CloseAccount from './CloseAccount';
+import CloseAccount from "./CloseAccount";
 import "../styles/settings.css";
 
 class Settings extends React.Component {
@@ -15,27 +14,6 @@ class Settings extends React.Component {
     homeScreen: true,
     name: "",
     phone: "",
-  };
-
-  addRecipient = (e) => {
-    e.preventDefault();
-    const recipient = {
-      name: this.state.name,
-      phone: this.state.phone,
-      id: this.props.recipients.length,
-    };
-    axios
-      .request({
-        url: "https://api.racoucoules.com/rememento",
-        method: "POST",
-        data: recipient,
-        headers: {
-          Authorization: this.props.token,
-        },
-      })
-      .then(() => {
-        this.props.toggleSettings();
-      });
   };
 
   closeAccount = (e) => {

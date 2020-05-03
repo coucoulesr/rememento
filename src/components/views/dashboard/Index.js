@@ -7,6 +7,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { login } from "../../../redux/actions";
 import { CircularProgress } from "@material-ui/core";
+import APIURL from "../../../config";
 
 function mapStateToProps(state) {
   return {
@@ -27,7 +28,7 @@ class Dashboard extends React.Component {
     if (!this.props.email) {
       axios({
         method: "GET",
-        url: "https://api.racoucoules.com/rememento/fetch-user",
+        url: APIURL + "/fetch-user",
         headers: { Authorization: this.props.token },
       }).then((res) => {
         this.props.dispatch(

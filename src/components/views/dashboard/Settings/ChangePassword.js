@@ -9,6 +9,7 @@ import {
 } from "../styles/card-styles";
 import { connect } from "react-redux";
 import axios from "axios";
+import APIURL from '../../../../config.js'
 
 class ChangePassword extends React.Component {
   state = {
@@ -34,7 +35,7 @@ class ChangePassword extends React.Component {
     if (this.comparePasswords()) {
       axios
         .request({
-          url: "https://api.racoucoules.com/rememento/change-password",
+          url: APIURL + "/change-password",
           method: "POST",
           data: {
             oldPassword: this.state.oldPassword,

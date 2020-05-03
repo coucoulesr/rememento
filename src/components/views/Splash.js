@@ -4,6 +4,7 @@ import { TextField, Button } from "@material-ui/core";
 import axios from "axios";
 import validate from "validate.js";
 import "./styles/Splash.css";
+import APIURL from "../../config";
 
 const signupStages = {
   HOME: "home",
@@ -37,7 +38,7 @@ class Splash extends React.Component {
 
   componentDidMount() {
     axios
-      .get("https://api.racoucoules.com/rememento")
+      .get(APIURL)
       .then((res) => {
         this.setState({
           ...this.state,
@@ -79,9 +80,7 @@ class Splash extends React.Component {
     } else {
       // Check if valid phone number was entered
       axios
-        .get(
-          `https://api.racoucoules.com/rememento/verify/${this.state.recipients[0].phone}`
-        )
+        .get(`${APIURL}/verify/${this.state.recipients[0].phone}`)
         .then((res) => {
           if (res.data.valid) {
             newState.phoneError = false;
@@ -131,7 +130,7 @@ class Splash extends React.Component {
         ],
       });
       axios
-        .post("https://api.racoucoules.com/rememento/register", {
+        .post(APIURL + "/register", {
           email: this.state.email,
           password: this.state.password,
           name: this.state.name,

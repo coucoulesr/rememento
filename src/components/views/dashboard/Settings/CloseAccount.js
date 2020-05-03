@@ -10,6 +10,7 @@ import {
   textFieldStyles,
 } from "../styles/card-styles";
 import cookie from 'react-cookies';
+import APIURL from '../../../../config.js';
 
 class CloseAccount extends React.Component {
   state = {
@@ -27,7 +28,7 @@ class CloseAccount extends React.Component {
       axios
         .request({
           method: "POST",
-          url: "https://api.racoucoules.com/rememento/delete-account",
+          url: APIURL + "/delete-account",
           data: {
             password: this.state.password,
           },
