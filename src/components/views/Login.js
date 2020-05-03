@@ -12,6 +12,7 @@ import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
 import { login } from "../../redux/actions";
 import axios from "axios";
+import cookie from 'react-cookies';
 
 function Copyright() {
   return (
@@ -36,6 +37,12 @@ class Login extends React.Component {
     error: "",
     success: false,
   };
+
+  componentDidMount() {
+    if (cookie.load('token')) {
+      this.setState({ ...this.state, success: true });
+    }
+  }
 
   pushToDashboard = () => {
     this.props.dispatch(
