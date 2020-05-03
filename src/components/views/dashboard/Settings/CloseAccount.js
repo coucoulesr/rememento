@@ -22,21 +22,29 @@ class CloseAccount extends React.Component {
     let input = prompt(
       'Do you really want to close your account? This action cannot be undone. To continue, type "delete" in the text box below'
     );
-    if (input.toLowerCase() === "delete") {
+    if (input && input.toLowerCase() === "delete") {
       axios
-        .post("https://api.racoucoules.com/rememento/delete-account", {
-          token: this.props.token,
-          password: this.state.password,
+        .request({
+          method: "POST",
+          url: "https://api.racoucoules.com/rememento/delete-account",
+          data: {
+            password: this.state.password,
+          },
+          headers: {
+            Authorization: this.props.token,
+          },
         })
-        .then(
-          this.setState({
-            ...this.state,
-            passwordError: false,
-            accountDeleted: true,
-          })
-        )
+        .then((res) => {
+          if (res.status == 200) {
+            this.setState({
+              ...this.state,
+              passwordError: false,
+              accountDeleted: true,
+            });
+          }
+        })
         .catch((err) => {
-          console.err(err);
+          console.error(err);
           if (err.response.status === 401) {
             this.setState({ ...this.setState, passwordError: true });
           }
@@ -74,7 +82,7 @@ class CloseAccount extends React.Component {
             helperText={this.state.passwordError && "Invalid password"}
             value={this.state.password}
             onChange={(e) =>
-              this.setState({ ...this.state, oldPassword: e.target.value })
+              this.setState({ ...this.state, password: e.target.value })
             }
             label="Password"
             variant="filled"
