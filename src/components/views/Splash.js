@@ -116,6 +116,20 @@ class Splash extends React.Component {
     if (this.state.password.length < 7) {
       this.setState({ ...this.state, passwordError: true });
     } else {
+      const scrubbedPhone = Number(
+        [...this.recipients[0].phone].filter((ch) => !isNaN(ch)).join("")
+      );
+      this.setState({
+        ...this.state,
+        recipients: [
+          {
+            id: 0,
+            phone: scrubbedPhone,
+            name: this.state.recipients[0].name,
+            authorized: false,
+          },
+        ],
+      });
       axios
         .post("https://api.racoucoules.com/rememento/register", {
           email: this.state.email,
