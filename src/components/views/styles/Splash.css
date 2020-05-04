@@ -14,11 +14,11 @@ a {
   from {
     position: relative;
     bottom: -20px;
-    opacity: 5%;
+    opacity: 0.05;
   }
   to {
     position: relative;
     bottom: 0;
-    opacity: 100%;
+    opacity: 1;
   }
 }
