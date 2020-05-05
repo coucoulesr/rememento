@@ -53,9 +53,21 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div style={bodyStyles}>
-        {!this.state.readyToRender && <CircularProgress />}
+        {!this.state.readyToRender && (
+          <div
+            style={{
+              height: "100%",
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <CircularProgress />
+          </div>
+        )}
         {this.state.readyToRender && (
-          <Nav
+          <DashboardNav
             name={this.state.readyToRender && this.props.name}
             toggleSettings={this.toggleSettings}
             viewSettings={this.state.viewSettings}
