@@ -29,7 +29,8 @@ class SignupRecipient extends React.Component {
     ],
   };
 
-  validateNamePhoneEmail = () => {
+  validateNamePhoneEmail = (e) => {
+    e.preventDefault();
     let newState = {};
 
     // Check if name is not empty
@@ -80,9 +81,14 @@ class SignupRecipient extends React.Component {
     this.setState({ ...this.state, ...newState });
   };
 
+  reset = (e) => {
+    e.preventDefault();
+    this.props.cancel();
+  }
+
   render() {
     return (
-      <div style={bodyStyles}>
+      <form onSubmit={(e) => this.validateNamePhoneEmail(e)} onReset={(e) => this.reset(e)} style={bodyStyles}>
         <h1 style={formStyles(0)}>Who are you?</h1>
         <span style={textFieldContainerStyles}>
           <TextField
@@ -168,17 +174,14 @@ class SignupRecipient extends React.Component {
           />
         </span>
         <div style={buttonContainerStyles}>
-          <Button
-            style={buttonStylesFadeIn}
-            onClick={() => this.validateNamePhoneEmail()}
-          >
+          <Button type="submit" style={buttonStylesFadeIn}>
             Continue
           </Button>
-          <Button style={buttonStylesFadeIn} onClick={this.props.cancel}>
+          <Button type="reset" style={buttonStylesFadeIn}>
             Cancel
           </Button>
         </div>
-      </div>
+      </form>
     );
   }
 }

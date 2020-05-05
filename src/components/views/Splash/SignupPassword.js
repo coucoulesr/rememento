@@ -15,7 +15,8 @@ class SignupPassword extends React.Component {
     passwordError: false,
   };
 
-  submit = () => {
+  submit = (e) => {
+    e.preventDefault();
     if (this.state.password.length < 7) {
       this.setState({ ...this.state, passwordError: true });
     } else {
@@ -23,9 +24,18 @@ class SignupPassword extends React.Component {
     }
   };
 
+  reset = (e) => {
+    e.preventDefault();
+    this.props.cancel();
+  };
+
   render() {
     return (
-      <div style={bodyStyles}>
+      <form
+        onSubmit={(e) => this.submit(e)}
+        onReset={(e) => this.reset(e)}
+        style={bodyStyles}
+      >
         <h1 style={formStyles(0)}>Enter a password</h1>
         <span style={textFieldContainerStyles}>
           <TextField
@@ -47,25 +57,25 @@ class SignupPassword extends React.Component {
         </span>
         <div style={buttonContainerStyles}>
           <Button
+            type="submit"
             style={{
               ...buttonStylesFadeIn,
               animationDelay: `${animationDelay * 3}s`,
             }}
-            onClick={this.submit}
           >
             Continue
           </Button>
           <Button
+            type="reset"
             style={{
               ...buttonStylesFadeIn,
               animationDelay: `${animationDelay * 3}s`,
             }}
-            onClick={this.props.cancel}
           >
             Cancel
           </Button>
         </div>
-      </div>
+      </form>
     );
   }
 }
