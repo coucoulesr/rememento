@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "./Nav";
+import DashboardNav from "./DashboardNav";
 import RecipientList from "./RecipientList";
 import Settings from "./Settings";
 import { changeRecipients } from "../../../redux/actions";

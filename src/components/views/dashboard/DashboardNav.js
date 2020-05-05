@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Nav(props) {
+export default function DashboardNav(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [loggedOut, setLoggedOut] = useState(false);
